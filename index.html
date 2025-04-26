@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+	<meta name="generator" content="Hugo 0.91.2" />
+
+  <title>
+      
+      prose
+      
+  </title>
+
+</head>
+
+
+  <body>
+
+    
+
+	
+<div class="h-feed">
+
+	
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2025/04/24/updates-on-remote-access-to.html">💾 Updates on Remote Access to POWER9 💾</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/04/24/updates-on-remote-access-to.html" class="u-url"><time class="dt-published" datetime="2025-04-24 10:39:38 -0500">Apr 24, 2025</time></a>
+
+		<div class="e-content">
+			 <p>Some quick progress notes for a few FreeBSD and OpenZFS devs, which will be accessing one of my POWER9 systems.</p>
+<p>See photos for visual reference.</p>
+<ul>
+<li>Separate L1 and L2 domain for all network access, zero-shared DMZ, unconnected to the rest of the RFC99 lab lack</li>
+<li>Mikrotik router has been temporarily slapped into place on the side of my lab rack, directly in back of the Talos II system (dual socket, 144 threads of fun!), using PoE for the main link</li>
+<li>PiKVM v3 is being cabled up for a jump box, will connect to the Mikrotik switch ports</li>
+<li>Talos II&rsquo;s OpenBMC will be connected to the Mikrotik switch ports, offering iKVM and ipmitool SoL terminal, which will be accessible via the jumpbox</li>
+<li>Wireguard tunnels will be allocated on the Mikrotik router for remote users</li>
+<li>APC PDU for remote power cycling (hard reboot style) of the Talos II is accessible via SNMP v3 authenticated command</li>
+</ul>
+<p>Later today on the &ldquo;Bhyve Production Users&rdquo; meeting, I&rsquo;ll go over those notes.</p>
+<ul>
+<li>Thursdays at 10am PST</li>
+<li>Recordings:  <a href="https://www.youtube.com/@callfortesting">www.youtube.com/@callfort&hellip;</a></li>
+<li>More info: <a href="https://callfortesting.org">callfortesting.org</a></li>
+</ul>
+<p><a href="https://micro.blog/dexter@bsd.network">@dexter@bsd.network</a></p>
+<p>#freebsd #openzfs #power9 #engineering #opensource #networking #linux</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2025/04/21/linux-kollektivs-oh-please.html">⚒️ Linux Kollektivs - Oh Please ⚒️</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/04/21/linux-kollektivs-oh-please.html" class="u-url"><time class="dt-published" datetime="2025-04-21 06:53:47 -0500">Apr 21, 2025</time></a>
+
+		<div class="e-content">
+			 <p>I love a lot about the linux world, and there&rsquo;s a lot of positive aspects to the kernel itself, which has brought a lot of joy over the years, with kernel module development, debugging, tuning, analyzing&hellip; specifically for my career, but also on a personal level. For one quarter of a century I&rsquo;ve been using Linux and BSDs in many different flavors, but there&rsquo;s an accelerating trend in the corporatized linux space which has been quite concerning.</p>
+<p>The marketing trends used by The Big Names over the past decade remind me far too much of Cold War propaganda, of the lies from literal communists which stained mine and many other&rsquo;s youthful years. Those lies fell apart in 1989 and we all hoped that would be the end of it&hellip; but of course not.</p>
+<p>The Perception</p>
+<blockquote>
+<p>Das Kollektiv der Gemeinschaft!
+Wir sind für Sie da!
+Schließt euch den Reihen des Proletariats an und vernichtet den Menschen!</p>
+</blockquote>
+<p>Translated, loosely</p>
+<blockquote>
+<p>The collective of the community!
+We are here for you!
+Join the ranks of the proletariat and destroy the Man!</p>
+</blockquote>
+<p>I do not want your communism.
+I do not want your pseudo-cooperatives.
+I do not want your kollektiv of anything.</p>
+<p>We&rsquo;ve had our community this whole time, and the corporate influence was supposed to be secondary. We had to fight and push to get OSS into the corporate sphere for decades, and sure enough, people take that for granted.</p>
+<p>There used to be an alignment where OSS was to &ldquo;be against the corporate overloads of closed-source&rdquo;, about &ldquo;freedom of choice and implementation&rdquo;, about &ldquo;fair use licenses&rdquo;. This was in opposition to Microsoft, Oracle, ATT unix, SCO unix, etc. But we all know what happened. The big names bought their way in, pumped up all the money making schemes, and now we see this trite marketing where billion dollar companies get to role play like they care about the communities which WE built over the past three+ decades.</p>
+<p>Don&rsquo;t believe me? Go look at the recent Fedora website redesign. Look at Canonical. There are many examples and one can find them easily by perusing the Distro-Watch list of a 100+ remakes.</p>
+<p>I&rsquo;m in no way against corporate interest and benefit when it&rsquo;s ethical, when it&rsquo;s up-front and honest about its intentions. Though they are not my favorites of the world, at least Redhat and Oracle don&rsquo;t try to pull one over on the user with their main sites &ndash; it&rsquo;s obvious that they are there for corporate players and for profitability, which is fine. I&rsquo;ve paid for their licenses, for their hardware, many times in many ways, from personal use to license structures while operating a startup, so I&rsquo;m not anti-corporation in the overall sense.</p>
+<p>However, this approach to &ldquo;we&rsquo;re all in this together&rdquo; fake messaging is tiresome. The irony of Fedora being owned by Redhat, who is owned by IBM; draw whatever conclusions one wants there, but they are all managed by different sectors.</p>
+<p>So then, do we really need to be sold on the community aspect of what is inherently a community of developers working together for a shared goal? No, we do not, those are supposed to be intrisic and inherent qualities without need of mention.</p>
+<p>Who does it better? Here&rsquo;s a non-exhaustive short list from the top of my mind.</p>
+<ul>
+<li>Gentoo (<a href="https://www.gentoo.org">https://www.gentoo.org</a>)</li>
+<li>Chimera (<a href="https://chimera-linux.org">https://chimera-linux.org</a>)</li>
+<li>SUSE (<a href="https://www.suse.com">https://www.suse.com</a>)</li>
+<li>Void (<a href="https://voidlinux.org">https://voidlinux.org</a>)</li>
+</ul>
+<p>Don&rsquo;t get me going on the BSDs&hellip; they are perfect and I love them, so it&rsquo;s a totally different conversation. 💗</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+
+		<a href="https://prose.winterschon.com/2025/04/02/good-morning-stormy-spring-weather.html" class="u-url"><time class="dt-published" datetime="2025-04-02 08:34:39 -0500">Apr 2, 2025</time></a>
+
+		<div class="e-content">
+			 <p>🩷 Good Morning Stormy Spring Weather 🩷</p>
+<p>#chicago #morning #photos #stormy #sleepy</p>
+<!-- raw HTML omitted -->
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2025/04/01/hyperfocal-preoptimization.html">🤯 &#34;Hyper-Focal Pre-Optimization&#34; 🤯</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/04/01/hyperfocal-preoptimization.html" class="u-url"><time class="dt-published" datetime="2025-04-01 05:36:51 -0500">Apr 1, 2025</time></a>
+
+		<div class="e-content">
+			 <p>Coders from all over likely already know of this quote, or would certainly would benefit from perma-copying this quote to the front of their brain-stem/visual-cortex knowledge queue:</p>
+<blockquote>
+<p>“Premature optimization is the root of all evil.”
+― Donald Ervin Knuth, The Art of Computer Programming, Volume 1: Fundamental Algorithms</p>
+</blockquote>
+<p>So then, what&rsquo;s this about Hyper-Focal in relation? It&rsquo;s when one builds a &ldquo;maladapted neurological reward-center structured pattern of behavior&rdquo;.</p>
+<p>IOW, it&rsquo;s a learned behavior from which one has associated a perceived positive emotional reaction-feedback which they consider of benefit and thus worth repeating. This happens very deep in the subconscious mind, where most people have barely any awareness of (not meant as a slight, but simply most are not learned in that level of neuro-signals processing and neurotransmitter precision awareness (if one does have it, they&rsquo;ve likely endured extensive medical treatments and controls-isolation which border on Frankensteinian levels of research)).</p>
+<p>This type of learned behavior is due to the manner in which neurotransmitter signals processing is handled in the brain, based on dopamine secretion going through its paces in the pre-frontal cortex / nucleus accumbens / and mid-brain structures observed in the &ldquo;Mesocorticolimbic to Nigrostriatal Dopaminergic Pathway&rdquo;.</p>
+<p>The maladapted aspect occurs when that learned pattern of behavior has a flaw in its feedback loop, and is not as helpful to the person as they perceive; it persists as a detrimental behavioral loop. Though the person has associated this rising-tide of dopamine with the learned actions and pattern of behavior, something about its internal or external effects (which are very varied, because life is complex and sometimes complicated) has become detrimental and its adaptation to the user&rsquo;s inhabited space no longer properly &ldquo;fits the pattern to the maze&rdquo; (yes, we are all lab rats seeking cheese in this fine and glorious simulation).</p>
+<p>Ok fine, so what then? We can optimize, we can pre-optimize, we can post-optimize, and over-optimize these thousands of feedback loops in our behavioral structures&hellip; but it is through finding a balance to our internal modes of self-maintenance and self-awareness that we find the action-pattern markers of success: consistency, pleasure, happiness.</p>
+<p>This &ldquo;Dopaminergic Pathways to Action!&rdquo; topic can be simplified or go much deeper into the realms of cognitive neuro-psychology, but in knowing my own awareness patterns of behavior for 4am writing&hellip; I&rsquo;m going to stop for now.</p>
+<p>Yay Science!</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2025/01/03/freebsd-articles-q-projektierung.html">FreeBSD Articles 2025 Q1 [projektierung]</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/01/03/freebsd-articles-q-projektierung.html" class="u-url"><time class="dt-published" datetime="2025-01-03 06:15:03 -0500">Jan 3, 2025</time></a>
+
+		<div class="e-content">
+			 <p>These are the topics that I&rsquo;ve been spending time with, on no specific schedule, with no intended intention, often for debugging or optimization, sometimes purely for curiosity, and often in-between other tasks throughout the day and night, so they might as well get some blog posts for discussion. All of the topics have already been written via configs, scripts, list-docs, and automation tooling, but no formal blog posts just yet.</p>
+<ol>
+<li>Ongoing sprints in &ldquo;The EPYC Epic, Desktop Cooling Round III, Software Settings&rdquo;</li>
+<li>An Enterprise Engineering Desktop w/ FreeBSD: hardware, software, configs &amp; optimizations</li>
+<li>Terminal Living, Adventures with Shells, and Why I stopped using Bash after 22 years (sh, csh, tcsh, fish, nu, xonsh)</li>
+<li>Not the Biggest, nor Smallest: Porridge Bears settle on a heat sink for EPYC cooling</li>
+<li>Aerodynamics and Turbulent Efficacy: stfu Supermicro chassis fans</li>
+<li>Xorg Always Works: FreeBSD with the Big Three GPU brands, running 4K 240Hz 1000R on AMD, Intel, Nvidia</li>
+<li>FreeBSD Performance Analysis: machdep, c-states, turbo, and timecounter shootout</li>
+<li>Lazy Cores, Hot Nights: CPU idle algorithm optimization, core pinning, and NUMA balancing</li>
+</ol>
+<p>#FreeBSD #Engineering #Linux #Systems #Desktop</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2024/12/31/siren-song-of-the-ultrasparc.html">💖 Siren Song of the UltraSparc 💖</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2024/12/31/siren-song-of-the-ultrasparc.html" class="u-url"><time class="dt-published" datetime="2024-12-31 05:32:47 -0500">Dec 31, 2024</time></a>
+
+		<div class="e-content">
+			 <pre tabindex="0"><code>02:42, awoken to first-morning, 4hrs sleep
+02:55, at home office standing desk
+02:58, navigate to eBay once more
+02:59, search Sparc M7 T7-2 chassis
+03:08, begin writing silly poem
+03:12, resume eBay search
+03:16, distracted by dtrace for tcshrc
+03:20, distracted by view of Lake Michigan
+03:22, return to Mastodon post-form
+03:28, distracted by tcsh config options
+03:32, review work emails, updates too
+03:44, move poem to 'nb' program
+03:50, resume timeline planning for work
+04:30, paste to micro-blog, click 'post'
+
+nocturn lucid state of mind, nor-aware
+to this living within, this living dream
+a call from asunder, singly sweet it rings
+t'was on the waves first heard 'n thought seen
+thirty-two cores, two-sockets she breathes
+.. &quot;come home my love, come rescue me&quot; ..
+
+perhaps one day or night so-soon 'oy-veh!
+dare say those waves may calm her songs
+an UltraSparc M7, no-more! no-less! yes yes!
+to dream of reveling in radiance so pure 'n fast
+'naught from those worlds above 'agast
+
+her wrists s'o slight, no strength for grasps
+t'was decades ago, burning searing flesh
+she spoke no words to jest, nor loving gasps
+her scar a wound - a warning forever to last
+
+fünf Buchstaben besagen, the letters extolled
+&quot;come down from clouds ne' stray to golds!&quot;
+'a singing singeing salaciousness unfolds
+&quot;ye' now Icara, auf'dem lofty piercing blue!&quot;
+&quot;whence must you crash? no less'n to bruise!&quot;
+</code></pre>
+		</div>
+	  </div>
+	
+
+</div>
+
+
+    
+    
+
+  </body>
+
+</html>
