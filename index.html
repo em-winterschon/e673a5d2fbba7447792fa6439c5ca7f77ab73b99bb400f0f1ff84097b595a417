@@ -208,6 +208,83 @@ fünf Buchstaben besagen, the letters extolled
 		</div>
 	  </div>
 	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2024/11/16/a-minor-commentary.html">A Minor Commentary on SED/Opal Encryption</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2024/11/16/a-minor-commentary.html" class="u-url"><time class="dt-published" datetime="2024-11-16 09:01:13 -0500">Nov 16, 2024</time></a>
+
+		<div class="e-content">
+			 <p>Data-At-Rest Encryption is a common topic, but one which is often misunderstood. Having led engineering and architectural efforts involved with hardware standards for encryption compliance, including detailed analysis of performance impacts while operating in accordance to service level agreements, here are some bits of discussion on the SED/Opal implementation.</p>
+<p><strong>TL;DR</strong></p>
+<ul>
+<li>SED/Opal TCG spec&rsquo;d drives are doing just fine. I trust it more than LUKS2 by a long shot.</li>
+</ul>
+<p><strong>Detailed Read</strong></p>
+<p>I have no issues trusting NAND and SAS firmware for the drive controllers that I&rsquo;ve personally validated as part of a hardware acquisition process for global fleets which require federally mandated encryption.</p>
+<p>Encryption compliance auditing is an involved process, as is the hardware validation process for identifying potential impacts to production storage performance workloads, and then there&rsquo;s adapting encryption compliance requirements to an org&rsquo;s procurement and provisioning pipelines, inc supply chain attack mitigations.</p>
+<p>All of those concerns apply to hardware shipped outside of the country into export-regulated zones that have tight controls over encryption compliance.</p>
+<p>Having been in charge of those workflows necessarily by job role, I can attest that it&rsquo;s not exactly roses and rabbits and chocolate teddy bears every day of the week during audit season, but it is rigorous and it does create secure data persistence across geopolitical zones and high-risk locales*.</p>
+<p><strong>USA Enc Regs</strong></p>
+<ul>
+<li>DoD: <a href="https://www.nsa.gov/portals/75/documents/resources/everyone/csfc/capability-packages/dar-cp.pdf">www.nsa.gov/portals/7&hellip;</a></li>
+<li>NIST, Encryption for End-User Devices: <a href="https://nvlpubs.nist.gov/nistpubs/Legacy/SP/nistspecialpublication800-111.pdf">nvlpubs.nist.gov/nistpubs/&hellip;</a></li>
+<li>HIPAA Encryption Overview: <a href="https://www.hipaajournal.com/hipaa-encryption-requirements/">www.hipaajournal.com/hipaa-enc&hellip;</a>
+HIPAA Req via DHHS: <a href="https://www.ecfr.gov/current/title-45/subtitle-A/subchapter-C/part-164/subpart-C/section-164.312">www.ecfr.gov/current/t&hellip;</a></li>
+</ul>
+<p><strong>LUKS2 CVEs</strong></p>
+<ul>
+<li><a href="https://www.cvedetails.com/cve/CVE-2021-4122/">www.cvedetails.com/cve/CVE-2&hellip;</a></li>
+<li><a href="https://www.cvedetails.com/cve/CVE-2020-14382/">www.cvedetails.com/cve/CVE-2&hellip;</a></li>
+<li><a href="https://www.cvedetails.com/cve/CVE-2016-4484/">www.cvedetails.com/cve/CVE-2&hellip;</a></li>
+</ul>
+<p>For non-USA regs there are similar standards for modern first-world countries, though I trust the US&rsquo;s military industrial complex far more than anything from anywhere other than Germany (and to a lesser extent, also Japan).</p>
+<p><strong>Exo-Border Encryption IRL</strong></p>
+<ul>
+<li>My favorite story for that example are systems in several Taiwan datacenters which were seized by the CCP during the past N years. They didn&rsquo;t want to cut the power, given the facility&rsquo;s status and criticality, so the systems continued to run unabated until their dead-stage.</li>
+</ul>
+<p>Effectively this created a situation of situationally enfoced uptime. As long as any system was online it was fine, but no maintenaces were possible, and any drive failures remained forever-failed as no person was authorized to replace any hardware (even a simple hot-swap drive bay flip). Most of those systems are still online, vastly exceeding any manufacturer specs or expectations of SLA. When shipping sensitive data and secure systems around the world one must expect the worst, and that issue certainly wasn&rsquo;t the worst, at least the data is still live.</p>
+<p>Combat zones are an entirely different thing, and one can look to the Special Forces requirements for their portables to see how encryption standards work during active live-fire scenarios. It&rsquo;s often not enough to have encrypted drives; there must also be provisions for hot-swap/ejection of the hardware from its chassis, auto self-destruct features, and similar controls which seek to mitigate the less common edge-case concerns (torture, etc).</p>
+<p><strong>Original Conversation</strong>
+This conversation began as part of a comment on my Mastodon account: <a href="https://mastodon.bsd.cafe/@winterschon/113481619191817945">mastodon.bsd.cafe/@wintersc&hellip;</a></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2024/08/15/performance-regressions-how.html">Performance &amp; Regressions -- How Orgs Ship Code to Production</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2024/08/15/performance-regressions-how.html" class="u-url"><time class="dt-published" datetime="2024-08-15 16:22:48 -0500">Aug 15, 2024</time></a>
+
+		<div class="e-content">
+			 <p>See that image? Right around the mid-section we see a common problem with the manner in which code is shipped to production. That one little section, displayed as a subsection of &ldquo;build &amp; packaging&rdquo;, happily named &ldquo;regression + performance testing&rdquo;. Whether the product is a user-facing site, or middle-ware component, or baremetal systems which provide cloud resources that we all know and (sometimes) love&hellip; the success of the product is gated by an org&rsquo;s ability to prioritize testing and automations for &ldquo;Performance XOR Regression&rdquo; (some orgs consider them inclusive, some consider them separate).</p>
+<p>So we see Performance and Regressions visualized as practically a footnote, which is representative of the present landscape: many orgs don&rsquo;t understand regression at scale vs regression in labs vs regression modeling. Most concerning is that too many orgs fail to provide management directives which involve full Perf+Reg test coverage. Instead, as a result of the lack of understanding, many orgs expect that their engineering teams will miraculously &ldquo;make time&rdquo; in their fully allocated and often over-subscribed schedules. That is not possible, and when production suffers, we all suffer. (insert meme with person riding bike, then falling from their own mistakes, wincing in pain on the ground, painfully expressing &ldquo;Why would the code do this to us?&quot;)</p>
+<p>Secondly, a common misconception from engineering (eng teams and their management structure) is that Perf/Reg testing exists solely in that one stage. One simple misconception often causes an array of new and unnecessary tech debt, while often concurrently perpetuating existing tech debt.</p>
+<p>Ok. So who is not failing at Performance and Regression testing? We can look to the ground-breaking engineering efforts on projects which have defined the human race: Voyager I and II, the J.Webb Space Telescope, CERN&rsquo;s particle accelerators, and many others. What&rsquo;s the difference? Time and planning, adhering to standards, routine audits, change controls, and many more.</p>
+<p>How about simpler projects? Do they attend to P&amp;R as well as JBL or CERN or Los Alamos? Unfortunately not. Over the course of nearly a quarter century of focus on this and related topics, the strong majority of orgs which I&rsquo;ve had the pleasure of working at have engaged in &ldquo;Spectrum Testing&rdquo; instead of &ldquo;Binary Testing&rdquo; when it comes to performance + regression analysis, expecting that half-measures will be sufficient. They are not, and because this area of engineering requires investment of time, people, and hardware, it often becomes a budgetary line item to cross out during the times in which it is most critical. Such is the reality of simple and sometimes willful ignorance. Humans are fallible, expectedly so, but the beautiful thing is that we can change and learn and improve; but how&hellip; through awareness, analysis, and iterative adjustment (just like in engineering).</p>
+<p>Investing partially, whether fiscally or in human hours, is not sufficient. Planning these elements for success always requires time, hardware, and people: investment and awareness. No one sends a telescope into Lagrange orbit one half-million miles from earth without proper test coverage (this isn&rsquo;t the Hubble (sorry, sorry, I know it&rsquo;s not funny)). The reasons are obvious. However, back on terra, faulty and insufficiently tested code can deploy to a hyperscaler&rsquo;s cloud with sufficient impact that national and global infrastructure goes offline, and that code can ship without a second set of eyes? Yep. It happens, but it does not need to happen. We can expect better, and we should. Engineers and end-users and everyone else deserves better.</p>
+<p>Easier said than done, sure, but there are no improvements without intention and action. Orgs must be dedicated to P&amp;R coverage, and they must be receptive to potential improvements and course corrections. It requires management to be aware that &ldquo;performance&rdquo; does not imply &ldquo;efficiency&rdquo; and vice-versa. Quite simply, gaining any benefits from sufficient test coverage requires that management embrace improvements to &ldquo;testing culture&rdquo; within their org, and to ensure that sufficient time/cycles/bandwidth on each engineering team&rsquo;s schedule is inclusive of engagement with org-wide performance engineering directives.</p>
+<p>[1] LinkedIN image reference: <a href="https://www.linkedin.com/feed/update/urn:li:activity:7229901279039291394">www.linkedin.com/feed/upda&hellip;</a></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2024/05/23/test-post-the.html">Everyone Loves Ansible</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2024/05/23/test-post-the.html" class="u-url"><time class="dt-published" datetime="2024-05-23 16:00:51 -0500">May 23, 2024</time></a>
+
+		<div class="e-content">
+			 <p>Test post. The variable value specifies the vicissitudes of vectorized validity of variablities.</p>
+
+		</div>
+	  </div>
+	
 
 </div>
 
