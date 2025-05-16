@@ -24,6 +24,114 @@
 	
 	  <div class="h-entry">
 		
+			<h1><a href="https://prose.winterschon.com/2025/05/14/mozilla-thunderbird-the-failure-of.html">💻 Mozilla Thunderbird - The Failure of a Once Great Client 💻</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/05/14/mozilla-thunderbird-the-failure-of.html" class="u-url"><time class="dt-published" datetime="2025-05-14 07:55:41 -0500">May 14, 2025</time></a>
+
+		<div class="e-content">
+			 <p>Thunderbird, wtf are you doing where you need 83% CPU plus ~50GB (virt) and 20G (res) of RAM allocated?</p>
+<p>The entire mailbox isn&rsquo;t even 1GB in total size. Yet here it is, cranking out all of this nebulous processing 24/7&hellip; literally 24/7 it&rsquo;s running loads like this for months now. Generally I ignore it because the workstation has a modern EPYC with 32 cores and 128GB of RAM, so it&rsquo;s not completely crippling my usage&hellip; but sometimes it does, and sometimes I want that 50/20GB split to not be around, and I want those clock cycles and L1/L2 cache doing something useful.</p>
+<p>This issue has persisted over several major versions, it&rsquo;s not a new issue. I&rsquo;ve gone through all of the usual steps, removing all themes and plugins, etc. Nothing fixes the problem, and there&rsquo;s nothing useful in its logs. Uninstall and reinstall, use on different computers, use with different server settings, use on different domain accounts, it doesn&rsquo;t matter&hellip; Thunderbird always runs itself into failure mode eventually.</p>
+<p>I don&rsquo;t want to dtrace it, I don&rsquo;t want to strace it, I don&rsquo;t want to deal with this at all because email is not complicated enough to warrant such investment of my engineering time or focus.</p>
+<p>I hate what Thunderbird has become, and I&rsquo;ve been using it since version 1.0 way back in the 2000s. I&rsquo;ve used it on all of the operating systems upon which it&rsquo;s been supported. This has become absurd, the slow death of a once great product.</p>
+<p>You&rsquo;re an email client. You handle IMAP. This resource usage is unacceptable.</p>
+<p>#opensource #mozilla #thunderbird #email #slow #debugging #programming #linux #freebsd #desktop</p>
+<!-- raw HTML omitted -->
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2025/05/13/am-dev-box-gpu-rdma.html">4am Dev Box - GPU &amp; RDMA Hardware Shuffle</a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/05/13/am-dev-box-gpu-rdma.html" class="u-url"><time class="dt-published" datetime="2025-05-13 23:13:15 -0500">May 13, 2025</time></a>
+
+		<div class="e-content">
+			 <p>Some photos from a bit of 4am dev box maintenance earlier this morning, focused on hardware reallocation and consolidation to maximize PCIe lane utilization.</p>
+<p>This box will host one VM using full PCIe passthrough on the GPUs and 50% NPAR for the NIC ports, and four smaller VMs. Storage for the VMs will be host-level ZFS on the two P3608, split up as several zvol allocated to the smaller VMs for a RoCE-v2 storage micro-cluster, replication to off-host network based storage also using RDMA.</p>
+<p>The GPU compute VM will be running our agentic-consensus LLM models, continuing development into deeper waters prior to running on the bigger hosts in colocation.</p>
+<ul>
+<li>4x Ampere A4000 GPUs</li>
+<li>2x 4TB Optane P3608 NVMe (2x 2TB per card)</li>
+<li>4x 128GB (512GB) Optane NVDIMMs + volatile 128GB of RDIMMs</li>
+<li>64 Thread Xeon 8370C, 2.8Ghz (Hyperscaler SKU)</li>
+<li>4-port 25GbE QLogic NIC, QL41234, using RoCE v2 RDMA</li>
+</ul>
+<p>#nvidia #gpu #ai #engineering #llm #development</p>
+<p><!-- raw HTML omitted --><!-- raw HTML omitted --><!-- raw HTML omitted --></p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
+			<h1><a href="https://prose.winterschon.com/2025/05/11/the-noncontroversial-controversy-of-btrfs.html">The non-Controversial Controversy of BTRFS </a></h1>
+		
+
+		<a href="https://prose.winterschon.com/2025/05/11/the-noncontroversial-controversy-of-btrfs.html" class="u-url"><time class="dt-published" datetime="2025-05-11 08:34:10 -0500">May 11, 2025</time></a>
+
+		<div class="e-content">
+			 <p>Some clarifications on some points here about the history of BTRFS as it relates to Oracle, Sun Microsystems, RedHat, ZFS, and a DARPA funded filesystem research project which concluded with a ghastly murder.</p>
+<blockquote>
+<p>Oracle bought Sun to get the ZFS file system. They have been porting ZFS features into Btrfs. The head of the Ext4 file system project, an Oracle employee, said that Ext4 was just a temporary stepping stone on the way to Btrfs.</p>
+</blockquote>
+<ol>
+<li>
+<p>A primary motivation for Oracle&rsquo;s acquisition of Sun was to obtain and control the IP for the MySQL database project, which had been obliterating a large amount of Oracle DB customer licensing and dominating the OSS database landscape.</p>
+</li>
+<li>
+<p>A primary motivation for Oracle&rsquo;s acquisition of Sun was to obtain their hardware platform for running Oracle DB, Oracle J2EE applications, and their vast middleware stacks. This was everything related to the UltraSparc architecture, Sun Fire line of Opteron based servers, all of the high performance storage technology, and all of Sun&rsquo;s enterprise contracts with the US military, US gov, various nation states, and all manner of other high-end &ldquo;serious business&rdquo; service compute providers.</p>
+</li>
+<li>
+<p>Sun created Java, nearly all of Oracle&rsquo;s entire stack requires Java, and Larry wanted that as a foundational piece of IP. At the time of the acquisition, the world ran on Java and it was the most profitable and most widely deployed programming language as well as server runtime environment (JDK, JRE). This aspect is also related to various IP lawsuits around Java, see Oracle vs Google later on.</p>
+</li>
+<li>
+<p>ReiserFS features were ported into Btrfs, not ZFS features. ZFS has always dominated enterprise storage, never btrfs, never ReiserFS. ZFS in an entirely different class of quality, performance, scalability, reliability, and global market penetration.</p>
+</li>
+<li>
+<p>RedHat was tired of supporting Btrfs after too many customers reported critical data-loss incidents, which could only serve to harm the company&rsquo;s reputation for stability and technical excellence.</p>
+</li>
+<li>
+<p>ZFS continues to be amazing, Btrfs continues to suck, Oracle still has their own original ZFS source tree separate from the OpenZFS project, Oracle still sells UltraSparc architecture, Oracle still owns Java IP, Oracle still doesn&rsquo;t prioritize Btrfs, nothing important runs on Btrfs.</p>
+</li>
+</ol>
+<p>The only recent news about btrfs and Redhat, which invalidates the original claims about Redhat vs Oracle conspiracy, is that Fedora Linux 33 has Btrfs as a default option along with XFS and Ext4, and we all know that Fedora is upstream development for RedHat Enterprise Linux.</p>
+<p>Some timeline details:</p>
+<ul>
+<li>2007, Btrfs concepts and originated at IBM</li>
+<li>2008, rip-off of ReiserFS features started by developer at Oracle, who was a former dev of ReiserFS (before Hans Reiser murdered wife, tried to cover it up, landed in prison, and ReiserFS project basically died too)</li>
+<li>Btrfs continues to be experimental for years, cannot complete with ZFS on any important metrics</li>
+<li>2008, Oracle Exadata v1 - a specialized hardware platform for running Oracle databases on HP-UX with Itanium procs</li>
+<li>2009, Oracle Exadata v2 - now running on Sun hardware, using modified Sun Fire systems with AMD Opteron procs</li>
+<li>2010, Oracle acquired Sun which had recently acquired MySQL</li>
+<li>2011, Redhat offers Btrfs as experimental in RHEL 6 beta</li>
+<li>2012, Btrfs main developer leaves Oracle for Fusion-IO</li>
+<li>2012, Oracle and SUSE offer Btrfs in their distro for prod use</li>
+<li>2013, Btrfs main developer leaves Fusion-IO for Facebook</li>
+<li>2017, Redhat removes Btrfs from inclusion to RHEL 8, switching to XFS (originally from SGI)</li>
+<li>2018, Redhat acquisition by IBM</li>
+</ul>
+<p>Some enjoyable references:</p>
+<ul>
+<li><a href="https://en.wikipedia.org/wiki/Btrfs">en.wikipedia.org/wiki/Btrf&hellip;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Acquisition_of_Sun_Microsystems_by_Oracle_Corporation">en.wikipedia.org/wiki/Acqu&hellip;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Hans_Reiser">en.wikipedia.org/wiki/Hans&hellip;</a></li>
+<li><a href="https://en.wikipedia.org/wiki/ZFS">en.wikipedia.org/wiki/ZFS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/XFS">en.wikipedia.org/wiki/XFS</a></li>
+<li><a href="https://en.wikipedia.org/wiki/Oracle_Database#Competition">en.wikipedia.org/wiki/Orac&hellip;</a></li>
+<li><a href="https://www.oracle.com/webfolder/s/assets/infographics/10-years-of-exadata/index.html">www.oracle.com/webfolder&hellip;</a></li>
+<li><a href="https://flashdba.com/history-of-exadata/">flashdba.com/history-o&hellip;</a></li>
+</ul>
+<p>#linux #btrfs #zfs #oracle #tech #history #redhat #sunmicrosystems</p>
+
+		</div>
+	  </div>
+	
+	  <div class="h-entry">
+		
 			<h1><a href="https://prose.winterschon.com/2025/04/24/updates-on-remote-access-to.html">💾 Updates on Remote Access to POWER9 💾</a></h1>
 		
 
